@@ -18,13 +18,8 @@ class MainViewModel(private val preferenceRepository: PreferenceRepository) : Vi
         getData()
     }
     private fun getData() {
-        val handler = Handler()
-        handler.postDelayed({
             _data.value = preferenceRepository.getList()
             Log.d("data from viewmodel" ,_data.value.toString())
-        }, 7000)
-
-
-    }
+  }
 
 }
