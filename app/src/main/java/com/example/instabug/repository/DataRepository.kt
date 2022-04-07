@@ -37,8 +37,7 @@ class DataRepository(context: Context) {
 
                     }
                 freqMap = list.groupingBy { it }.eachCount()
-                val result = freqMap.toList().sortedBy { (_, value) -> value}.toMap()
-                for(index in result.entries){
+                for(index in freqMap.entries){
                     val item  = HtmlData(index.key , index.value)
                     dataList.add(item)
                 }

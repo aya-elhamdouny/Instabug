@@ -110,18 +110,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun search(text: String?) {
         text?.let {
-            Log.d("filterrr" , text)
+            val resultList :  MutableList<HtmlData>  = mutableListOf()
             for (index in dataList) {
                 if (index.word == text) {
+                    Log.d("trueeeee" , index.word)
                     val item = HtmlData(index.word, index.occurrence)
-                    filteredList.add(item)
+                    resultList.add(item)
                 }
             }
+            filteredList = resultList
+            Log.d("filttttterrr" , resultList.toString())
             Log.d("filterrr" , filteredList.toString())
 
-
             updateRecyclerView()
-            if (dataList.isEmpty()) {
+            if (filteredList.isEmpty()) {
                 Toast.makeText(this, "No match found!", Toast.LENGTH_SHORT).show()
             }
             updateRecyclerView()
@@ -132,8 +134,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateRecyclerView() {
         recyclerview.apply {
             Log.d("filterrr" , filteredList.toString())
-            customAdapter = CustomAdapter(filteredList)
-            customAdapter.notifyDataSetChanged()
+            customAdapter.updateRecyclerView(filteredList)
         }
     }
 

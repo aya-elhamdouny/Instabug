@@ -43,6 +43,12 @@ class CustomAdapter(private var data: List<HtmlData>) : RecyclerView.Adapter<Cus
             val name: TextView = itemView.findViewById(R.id.name)
             val repeated: TextView = itemView.findViewById(R.id.repeated)
         }
+    fun updateRecyclerView(newList : List<HtmlData>){
+        dataLists.toMutableList().clear()
+        dataLists.toMutableList().addAll(newList)
+        notifyDataSetChanged()
+
+    }
 
 
 
