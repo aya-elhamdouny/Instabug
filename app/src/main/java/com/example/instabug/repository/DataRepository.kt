@@ -9,11 +9,11 @@ import org.jsoup.select.Elements
 import java.lang.Exception
 
 
-class Repository(context: Context) {
+class DataRepository(context: Context) {
 
     var freqMap: Map<String, Int> = mapOf()
     val dataList : MutableList<HtmlData> = mutableListOf()
-
+     var sharedPreferences = PreferenceRepository(context)
 
 
     fun fetchData(){
@@ -34,6 +34,7 @@ class Repository(context: Context) {
                     val item  = HtmlData(index.key , index.value)
                     dataList.add(item)
                 }
+                sharedPreferences.setList(sharedPreferences.DATA_TAG , dataList)
                 Log.d("data from repo" , dataList.toString())
 
             } catch (ex: Exception) {
